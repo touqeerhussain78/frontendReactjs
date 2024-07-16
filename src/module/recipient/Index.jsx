@@ -45,7 +45,6 @@ function Index() {
                                   <th>Name</th>
                                   <th>Phone</th>
                                   <th>Email</th>
-                                  <th>Status</th>
                                   <th>CreatedAT</th>
                                   <th>Action</th>
                               </tr>
@@ -57,7 +56,6 @@ function Index() {
                                   <td>{ recipient.name}</td>
                                   <td>{ recipient.phone}</td>
                                   <td>{ recipient.email}</td>
-                                  <td>{ recipient.status}</td>
                                   <td>{ recipient.created_at}</td>
                                   <td><Link className='btn btn-success' to={`show/${recipient.id}`}>View</Link><Link className='btn btn-primary' to={`edit/${recipient.id}`}>Edit</Link><Link onClick={() => handleDelete(recipient.id)} className='btn btn-danger'>Delete</Link></td>
                               </tr>
