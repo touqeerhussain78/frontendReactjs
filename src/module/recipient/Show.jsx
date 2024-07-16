@@ -29,7 +29,7 @@ function Show() {
                   <h2>Email: {recipient.email}</h2>
                   
                   <h2>Phone: {recipient.phone}</h2>
-                  <Link className='btn btn-success mr-3' to={`/`}>Back</Link><Link className='btn btn-primary' to={`edit/${recipient.id}`}>Edit</Link>
+                  <Link className='btn btn-success mr-3' to={`/`}>Back</Link><Link className='btn btn-primary' to={`/edit/${recipient.id}`}>Edit</Link>
                   </div>
               </div>
       </>
