@@ -45,19 +45,19 @@ function Edit() {
                       <h2> Edit Recipient</h2>
                       <div className='mb-2'>
                           <label htmlFor="">Name</label>
-                          <input type="text" placeholder='Enter Name' value={values.name} className='form-control' onChange={e => setValues({...values, name: e.target.value})} />
+                          <input type="text" placeholder='Enter Name' value={values.name} className='form-control' onChange={e => setValues({...values, name: e.target.value})} required />
                       </div>
                       <div className='mb-2'>
                           <label htmlFor="">Email</label>
-                          <input type="email" placeholder='Enter email' value={values.email} className='form-control' onChange={e => setValues({...values, email: e.target.value})} />
+                          <input type="email" placeholder='Enter email' value={values.email} className='form-control' onChange={e => setValues({...values, email: e.target.value})} required />
                       </div>
                       <div className='mb-2'>
                           <label htmlFor="">Phone</label>
-                          <input type="text" placeholder='Enter phone' value={values.phone} className='form-control' onChange={e => setValues({...values, phone: e.target.value})} />
+                          <input type="text" placeholder='Enter phone' value={values.phone} className='form-control' onChange={e => setValues({...values, phone: e.target.value})} required />
                       </div>
                       <div className='mb-2'>
                           <label htmlFor="">Location</label>
-                          <input type="text" placeholder='Enter location' value={values.location} className='form-control' onChange={e => setValues({...values, location: e.target.value})} />
+                          <input type="text" placeholder='Enter location' value={values.location} className='form-control' onChange={e => setValues({...values, location: e.target.value})} required />
                       </div>
                       <button className='btn btn-primary'>update</button>
                   </form>
