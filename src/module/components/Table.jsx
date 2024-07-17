@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Table = ({ columns, data, actionButtons, itemsPerPage }) => {
+const Table = ({ columns, data, actionButtons, itemsPerPage, onDelete }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
@@ -14,8 +14,8 @@ const Table = ({ columns, data, actionButtons, itemsPerPage }) => {
   );
 
   return (
-    <div className="w-full overflow-x-auto">
-      <table className="min-w-full divide-y divide-gray-200">
+    <div className="w-full overflow-x-auto ">
+      <table className="table min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
             {columns.map((column) => (
@@ -47,15 +47,28 @@ const Table = ({ columns, data, actionButtons, itemsPerPage }) => {
               ))}
               {actionButtons && actionButtons.length > 0 && (
                 <td className="px-6 py-4 whitespace-nowrap space-x-2">
-                  {actionButtons.map((button, buttonIndex) => (
-                    <a
-                      key={buttonIndex}
-                      href={button.url(row)}
-                      className="text-indigo-600 hover:text-indigo-900"
-                    >
-                      {button.label}
-                    </a>
-                  ))}
+                  {actionButtons.map((button, buttonIndex) => {
+                    if (button.label === 'Delete') {
+                      return (
+                        <button
+                          key={buttonIndex}
+                          onClick={() => onDelete(row)}
+                          className="text-red-600 hover:text-red-900"
+                        >
+                          {button.label}
+                        </button>
+                      );
+                    }
+                    return (
+                      <a
+                        key={buttonIndex}
+                        href={button.url(row)}
+                        className="text-indigo-600 hover:text-indigo-900"
+                      >
+                        {button.label}
+                      </a>
+                    );
+                  })}
                 </td>
               )}
             </tr>
@@ -85,5 +98,4 @@ const Table = ({ columns, data, actionButtons, itemsPerPage }) => {
     </div>
   );
 };
-
 export default Table;

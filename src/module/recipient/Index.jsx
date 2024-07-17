@@ -2,10 +2,33 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { adminServices } from '../services/methods';
+import Table from '../components/Table';
 
 function Index() {
     const navigate = useNavigate();
     const [recipients, setRecipients] = useState([]);
+
+    const columns = [
+    { Header: 'Name', accessor: 'name' },
+    { Header: 'Email', accessor: 'email' },
+    { Header: 'Phone', accessor: 'phone' },
+    { Header: 'Location', accessor: 'location' }
+    ];
+    
+    
+    const actionButtons = [
+    {
+      label: 'View',
+      url: (row) => `/show/${row.id}`
+    },
+    {
+      label: 'Edit',
+      url: (row) => `/edit/${row.id}`
+    },
+    {
+      label: 'Delete',
+    }
+  ];
 
     const getRecipients = async () => {
         try {
@@ -19,10 +42,10 @@ function Index() {
         getRecipients();
     }, []);
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (row) => {
         event.preventDefault();
         try {
-            await adminServices.deleteRecipients(id);
+            await adminServices.deleteRecipients(row.id);
             location.reload();
         } catch (e) {
             console.log(e);
@@ -37,7 +60,9 @@ function Index() {
                       
                   <Link to="/create" className='btn btn-success'>Create +</Link>
                   </div>
-                  <table className='table'>
+                  <Table columns={columns} data={recipients} actionButtons={actionButtons} itemsPerPage={5}
+      onDelete={handleDelete} />
+                  {/* <table className='table'>
                       
                           <thead>
                               <tr>
@@ -61,7 +86,7 @@ function Index() {
                               </tr>
                           }) }
                       </tbody>
-                  </table>
+                  </table> */}
               </div>
           </div>
       </>
