@@ -12,7 +12,8 @@ function Index() {
     { Header: 'Name', accessor: 'name' },
     { Header: 'Email', accessor: 'email' },
     { Header: 'Phone', accessor: 'phone' },
-    { Header: 'Location', accessor: 'location' }
+    { Header: 'Location', accessor: 'location' },
+    { Header: 'File', accessor: 'file' }
     ];
     
     

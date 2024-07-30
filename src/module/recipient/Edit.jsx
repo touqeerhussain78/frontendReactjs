@@ -10,7 +10,7 @@ function Edit() {
     const getRecipient = async () => {
         try {
             const res = await adminServices.getRecipient(id);
-            setValues({...values, name: res.name, email: res.email, phone: res.phone, location: res.location});
+            setValues({...values, name: res.name, email: res.email, phone: res.phone, location: res.location, file: `http://localhost:8081/public/uploads/${res.file}`});
             
         } catch (e) {
             console.log(e);
@@ -25,7 +25,8 @@ function Edit() {
         name: '',
         email: '',
         phone: '',
-        location: '',
+         location: '',
+        file: '',
      });
     
     const handleUpdate = async (event) => {
@@ -59,6 +60,7 @@ function Edit() {
                           <label htmlFor="">Location</label>
                           <input type="text" placeholder='Enter location' value={values.location} className='form-control' onChange={e => setValues({...values, location: e.target.value})} required />
                       </div>
+                      <img className='mb-2' width='50px' src={values.file} />
                       <button className='btn btn-primary'>update</button>
                   </form>
               </div>

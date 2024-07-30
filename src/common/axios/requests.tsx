@@ -8,10 +8,20 @@ export const Get = (
 ) => serviceProvider.get(path, { ...(headers && { headers }) });
 
 export const Post = (
-  path: string,
-  params: AxiosRequestConfig,
-  headers?: AxiosRequestHeaders
-) => serviceProvider.post(path, params, { ...(headers && { headers }) });
+    path: string,
+    params: FormData, // Changed to FormData type
+    headers?: AxiosRequestHeaders
+) => {
+    // Ensure headers contain 'Content-Type': 'multipart/form-data'
+    const config: AxiosRequestConfig = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            ...headers
+        }
+    };
+
+    return serviceProvider.post(path, params, config);
+};
 
 export const Put = (
   path: string,
